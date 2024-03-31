@@ -15,9 +15,11 @@ with house:
                     with col[i]:
                         with st.container(border=10):
                             for wind in apart:
-                                with st.container(border=10):
                                     if wind==1:
                                         st.button(str(wind),key=str(randint(1, 10000)),)
+                                    else:
+                                        st.button(str(wind),key=str(randint(1, 10000)),)
+ 
 with check_box:
     with st.container(border=10):
         with st.container(border=10):
