@@ -42,7 +42,7 @@ if date:
     floors = result[2]
     for i in range(len(result[4])):
         for j in range(len(result[4][i])):
-            st.write(f' Квартира {i+1} : {result[4][i]}')
-            
+            st.write(f' Квартира {i+1} : {[int(num) for num in result[4][i]]}')
+             
 else:
     st.write('Пожалуйста, введите дату для получения результатов.')
