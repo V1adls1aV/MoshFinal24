@@ -9,12 +9,9 @@ with house:
         s = [[[1], [1, 0, 0]], [[0, 0], [1, 0]]]
         for floor in s:
             with st.container(border=10):
-                wind=0
-                for apart in range(len(floor)):
-                    
-                    wind +=len(apart)
-                col = st.columns(wind)
+                col = st.columns(len(floor))
                 for i, apart in enumerate(floor):
                     with col[i]:
-                            for windo in apart:
-                                st.button(str(windo),key=str(randint(1, 10000)))
+
+                            for wind in apart:
+                                    st.button(str(wind),key=str(randint(1, 10000)))
