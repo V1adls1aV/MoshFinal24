@@ -7,11 +7,11 @@ house,check_box = st.columns([0.8,0.3])
 with house:   
     with st.container(border=20): 
         s = [[[1], [1, 0, 0]], [[0, 0], [1, 0]]]
-        for floor in s:
+        for floor in s:  #берет каждый этаж
             with st.container(border=10):
-                col = st.columns(len(floor))
-                for i, apart in enumerate(floor):
-                    with col[i]:
+                col = st.columns(len(floor)) # на каждом этаже считает квартиры, и каждой квартире делает свой столбец 
+                for i, apart in enumerate(floor): # квартиры и окна по индексу
+                    with col[i]: # и в каждом окне
 
-                            for wind in apart:
-                                    st.button(str(wind),key=str(randint(1, 10000)))
+                            for wind in apart: 
+                                    st.button(str(wind),key=str(randint(1, 10000))) #делает кнопку
