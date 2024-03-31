@@ -2,7 +2,7 @@ from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
 import sqlalchemy as sa
 
-from . import BaseRepo
+from .base import BaseRepo
 from .apart import Apart
 from app.db.tables import FloorORM, ApartORM
 from app.db.setup import async_session

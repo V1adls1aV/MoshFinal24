@@ -2,7 +2,7 @@ from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
 import sqlalchemy as sa
 
-from . import BaseRepo
+from .base import BaseRepo
 from .wind import Wind
 from app.db.tables import ApartORM, WindORM
 from app.db.setup import async_session
@@ -24,7 +24,7 @@ class Apart(BaseRepo):
     @classmethod
     def get_repository(cls, orm: ApartORM, session: AsyncSession = async_session) -> Apart:
         id = orm.id if hasattr(orm, 'id') else None
-        return ApartORM(id, orm.n, orm.floor_id, session=session)
+        return Apart(id, orm.n, orm.floor_id, session=session)
 
     @classmethod
     async def get(cls, id: int, session: AsyncSession = async_session) -> Apart:
