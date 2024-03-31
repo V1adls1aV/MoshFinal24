@@ -21,10 +21,6 @@ class BaseRepo(abc.ABC):
     def _get_orm(self) -> DBBase:
         '''Factory for `ORM` row representation.'''
 
-    @abc.abstractmethod
-    def get_model(self) -> BaseModel:
-        '''Factory for `pydantic` row representation.'''
-
     async def create(self) -> None:
         '''Insert new `Repository` to database.'''
         orm = self._get_orm()
@@ -89,9 +85,6 @@ class BaseRepo(abc.ABC):
             raise ORMNoFieldsToUpdateError(self.__class__.__name__, self.id)
 
         await self._update(d)
-
-    def __eq__(self, repo: BaseRepo) -> bool:
-        return self.get_model() == repo.get_model()
 
     @property
     def session(self) -> AsyncSession:

@@ -18,5 +18,9 @@ class DBBase:
 
 def get_metadata():
     '''Import all project tables'''
+    from .home import HomeORM
+    from .floor import FloorORM
+    from .apart import ApartORM
+    from .wind import WindORM
 
     return mapper_registry.metadata
