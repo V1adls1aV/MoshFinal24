@@ -1,6 +1,6 @@
 from .api import Api
 from datetime import datetime
-from ..models import InfoByDate
+from ..models import *
 
 
 class MietApi:
@@ -21,6 +21,21 @@ class MietApi:
         response = self.api.get("", params=params)
 
         body = response.json()["message"]
-        data = InfoByDate.parse_obj(body)
+        info_date = Date.parse_obj(body["date"])
+        flats_count = FlatsCount.parse_obj(body["flats_count"])
 
-        return data
+        window_floors = []
+        for i in range(flats_count.data):
+            window_floors.append(body["windows"]["data"][f"floor_{i+1}"])
+
+        print(window_floors)
+
+        window = Windows(data=window_floors, description=body["windows"]["description"])
+        windows_for_flat = WindowsForFlat.parse_obj(body["windows_for_flat"])
+
+        return InfoByDate(
+            date=info_date,
+            flats_count=flats_count,
+            windows=window,
+            windows_for_flat=windows_for_flat
+        )

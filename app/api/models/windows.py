@@ -1,7 +1,7 @@
 from pydantic import BaseModel
-from .windows_floor import WindowsFloor
+from typing import List
 
 
 class Windows(BaseModel):
-    data: WindowsFloor
+    data: List[List[bool]]
     description: str
