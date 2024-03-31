@@ -11,7 +11,7 @@ class FloorORM(DBBase):
     home_id = sa.Column('home_id', sa.ForeignKey('home.id'))
 
     home = orm.relationship('HomeORM', back_populates='floors')
-    apparts = orm.relationship('ApartORM', back_populates='floor')
+    aparts = orm.relationship('ApartORM', back_populates='floor')
 
     def __repr__(self) -> str:
         return f'FloorORM(id={self.id}, n={self.n}, home_id={self.home_id})'

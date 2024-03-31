@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import sqlalchemy as sa
 from datetime import datetime
 
-from . import BaseRepo
+from .base import BaseRepo
 from .floor import Floor
 from app.db.tables import HomeORM, FloorORM
 from app.db.setup import async_session
