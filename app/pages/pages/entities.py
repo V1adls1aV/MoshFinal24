@@ -22,33 +22,25 @@ def get_by_date(date:str) -> list:
         except:
             break
     floors.reverse()
+    flat_numbers = []
     for i in range(len(floors)):
         for j in range(res['flats_count']['data']):
             if floors[i][j] == True:
-                result.append((i)*res['flats_count']['data'] + j+1) 
-    return [len(result), result]
+                flat_numbers.append((i)*res['flats_count']['data'] + j+1)
+    return [len(flat_numbers), flat_numbers, floors, len(appart)]
 
-# Заголовок веб-приложения
-st.title('Визуализация результатов функции')
+st.title('Визуализация результатов поиска')
 
-# Получение даты от пользователя
-date = st.text_input('Введите дату в формате ГГГГ-ММ-ДД (например, 2024-03-31):')
+date = st.text_input('Введите дату:')
 
-# Проверка, была ли введена дата
 if date:
-    # Получение результатов функции
     result = get_by_date(date)
-    
-    # Вывод результатов
     st.write(f"Количество квартир с необходимыми ресурсами: {result[0]}")
     st.write(f"Номера квартир с необходимыми ресурсами: {result[1]}")
-    
-    # Визуализация комнат в каждой квартире
     st.write("Визуализация комнат в каждой квартире:")
-    floors = result[2]  # Получение floors из результата
-    for i, flat_number in enumerate(result[1], start=1):
-        st.write(f"Квартира №{flat_number}")
-        for j, room in enumerate(floors[flat_number - 1], start=1):
-            st.write(f"Комната {j}: {room}")
+    floors = result[2]
+    for i in range(len(floors)):
+        for j in range(result[3]):
+            st.write(f' Квартира {i+1} : {floors[i][j]}')
 else:
     st.write('Пожалуйста, введите дату для получения результатов.')
