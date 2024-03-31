@@ -16,6 +16,7 @@ def get_by_date(date:str) -> list:
                 appart = []
                 for _ in range(j):
                     appart.append(next(temp_floor))
+                result.append(appart)
                 floor.append(any(appart))
             floors.append(floor)
             floor_num += 1
@@ -27,7 +28,7 @@ def get_by_date(date:str) -> list:
         for j in range(res['flats_count']['data']):
             if floors[i][j] == True:
                 flat_numbers.append((i)*res['flats_count']['data'] + j+1)
-    return [len(flat_numbers), flat_numbers, floors, len(appart)]
+    return [len(flat_numbers), flat_numbers, floors, len(appart), result]
 
 st.title('Визуализация результатов поиска')
 
@@ -39,8 +40,9 @@ if date:
     st.write(f"Номера квартир с необходимыми ресурсами: {result[1]}")
     st.write("Визуализация комнат в каждой квартире:")
     floors = result[2]
-    for i in range(len(floors)):
-        for j in range(result[3]):
-            st.write(f' Квартира {i+1} : {floors[i][j]}')
+    for i in range(len(result[4])):
+        for j in range(len(result[4][i])):
+            st.write(f' Квартира {i+1} : {result[4][i]}')
+            
 else:
     st.write('Пожалуйста, введите дату для получения результатов.')
