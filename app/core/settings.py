@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     POSTGRES_URL: str = f'postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}' \
         f'@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
     
+    BASE_URL: str = env.get('BASE_URL')
+    API_LOING: str = env.get('API_LOGIN')
 
 @lru_cache()
 def get_app_settings() -> Settings:

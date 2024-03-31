@@ -1,1 +1,4 @@
-'''Interaction with miet api.'''
+"""Interaction with miet api."""
+
+from .miet_api import MietApi
+
